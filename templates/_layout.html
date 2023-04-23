@@ -14,6 +14,8 @@
     <link rel="manifest" href="/site.webmanifest">
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#a855f7">
     <meta name="msapplication-TileColor" content="#a855f7">
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#F1F5F9">
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#020617">
 </head>
 <body id="body">
     <article class="max-w-[800px] container mx-auto flex-col">
@@ -59,6 +61,20 @@
                     </div>
                     <div class="pl-1 pr-5 py-4">
                         <a href="other-sakit-oranglain.html" {% if oranglain %} id="filter-active" {% else %} class="filter-item" {% endif %}>Untuk Oranglain</a>
+                    </div>
+                    {% endif %}
+                    {% if other_tahniah %}
+                    <div class="pr-1 pl-5 lg:pl-0 py-4">
+                        <a href="other-selamat-umum.html" {% if umum %} id="filter-active" {% else %} class="filter-item" {% endif %}>Umum</a>
+                    </div>
+                    <div class="px-1 py-4">
+                        <a href="other-selamat-kelahiran.html" {% if kelahiran %} id="filter-active" {% else %} class="filter-item" {% endif %}>Kelahiran</a>
+                    </div>
+                    <div class="px-1 py-4">
+                        <a href="other-selamat-pernikahan.html" {% if pernikahan %} id="filter-active" {% else %} class="filter-item" {% endif %}>Pernikahan</a>
+                    </div>
+                    <div class="pl-1 pr-5 py-4">
+                        <a href="other-selamat-syukuran.html" {% if syukuran %} id="filter-active" {% else %} class="filter-item" {% endif %}>Syukuran</a>
                     </div>
                     {% endif %}
                 </div>
