@@ -1376,6 +1376,16 @@ h3 {
   }
 }
 
+.doa-translation {
+  margin-top: 0.75rem;
+  font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  font-style: italic;
+  --tw-text-opacity: 1;
+  color: rgb(148 163 184 / var(--tw-text-opacity));
+}
+
 #body.doa-x2 .doa {
   font-size: 1.5rem;
   line-height: 2;
@@ -1398,6 +1408,14 @@ h3 {
     font-size: 3rem;
     line-height: 2;
   }
+}
+
+#body.translation .doa {
+  display: none;
+}
+
+#body:not(.translation) .doa-translation {
+  display: none;
 }
 
 .dalil {
@@ -1446,6 +1464,10 @@ h3 {
 
 #body.doa-x3 .change-size-state {
   left: 148px;
+}
+
+#body.translation .change-size-state {
+  left: 196px;
 }
 
 @media (prefers-color-scheme: dark) {

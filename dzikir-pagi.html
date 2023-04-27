@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, height=device-height, minimum-scale=1.0, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Doa & Dzikir - Dzikir Pagi</title>
+    <title>Dzikir & Doaku - Dzikir Pagi</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="style.css?v=23.04.21">
@@ -33,6 +33,7 @@
 
 <div class="card mt-5">
     <p class="doa">أَصْبَحْنَا عَلَى فِطْرَةِ اْلإِسْلاَمِ وَعَلَى كَلِمَةِ اْلإِخْلاَصِ، وَعَلَى دِيْنِ نَبِيِّنَا مُحَمَّدٍ صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ، وَعَلَى مِلَّةِ أَبِيْنَا إِبْرَاهِيْمَ، حَنِيْفًا مُسْلِمًا وَمَا كَانَ مِنَ الْمُشْرِكِيْنَ</p>
+    <p class="doa-translation">Ashbahnaa 'alaa fithrotil-islaam, wa 'alaa kalimatil-ikhlaash, wa 'alaa nabiyyina Muhammadin shollalloohu 'alaihi wa sallam, wa 'alaa millati abiina Ibroohiima, haniifan musliman wa maa kaana minal musyrikiin.</p>
     <p class="mt-5">"Di waktu pagi kami berada di atas fitrah Islam, di atas kalimat ikhlas (syahadatain), di atas agama Nabi kita Muhammad ﷺ, dan di atas agama ayah kami Ibrahim, yang berdiri di atas jalan yang lurus, muslim dan tidak tergolong orang-orang musyrik."</p>
 </div>
 
@@ -40,6 +41,7 @@
     <button class="card-click-area"></button>
     <div class="card-count">0</div>
     <p class="doa">رَضِيْتُ بِاللهِ رَبًّا، وَبِاْلإِسْلاَمِ دِيْنًا، وَبِمُحَمَّدٍ صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ نَبِيًّا</p>
+    <p class="doa-translation">Rodhiitu billaahi robbaa, wabil-islaamidiinaa, wabi-Muhammadin shollalloohu 'alaihi wa sallama nabiyyaa.</p>
     <p class="mt-5 text-slate-500">Dibaca 3x</p>
     <p class="mt-5">"Aku ridho/senang Allah sebagai Rabb, Islam sebagai agama, dan Muhammad sebagai nabi (yang diutus oleh Allah)."</p>
     <span class="card-hint">Click/Tap untuk menghitung dzikir</span>
@@ -47,6 +49,7 @@
 
 <div class="card mt-5">
     <p class="doa">اللَّهُمَّ بِكَ أَصْبَحْنَا وَبِكَ أَمْسَيْنَا، وَبِكَ نَحْيَا وَبِكَ نَمُوتُ، وَإِلَيْكَ النُّشُوْرُ</p>
+    <p class="doa-translation">Alloohumma bika-ashbahnaa, wabika-nahyaa, wabika-namuut, wailaikan-nusyuur.</p>
     <p class="mt-5">"Ya Allah, dengan Engkaulah kami memasuki waktu pagi, dan dengan Engkaulah kami memasuki waktu sore. Dengan Engkaulah kami hidup dan dengan Engkaulah kami mati. Dan kepada-Mu kami dibangkitkan."</p>
 </div>
 
@@ -174,6 +177,11 @@
                         3<small class="ml-0.5">x</small>
                     </span>
                 </button>
+                <button class="p-1 relative z-10 hidden" onclick="translasi()">
+                    <span class="change-size-item">
+                        ع<span class="ml-0">A</span>
+                    </span>
+                </button>
                 <span class="change-size-state"></span>
             </div>
             <button class="w-12 h-12 rounded-full bg-black dark:bg-white bg-opacity-10 dark:bg-opacity-10 backdrop-blur-xl flex items-center justify-center" onclick="backTop()">
@@ -207,31 +215,34 @@
         let counter = 0;
         
         document.addEventListener('click', function(event){
-            let parent = event.target.parentElement;
-            let dzikirMax = parent.dataset.dzikir;
-            let dzikirCount = parent.querySelector('.card-count');
-            let dzikirCounter = parseInt(dzikirCount.innerHTML);
-
-            console.log(dzikirCount);
-
-            parent.classList.add('counted');
+            let counterArea = event.target.className;
             
-            if (dzikirCounter < dzikirMax) {
-                dzikirCounter++;
-                dzikirCount.innerHTML = dzikirCounter;
-                parent.classList.add('clicked');
+            if (counterArea == "card-click-area") {
+                let parent = event.target.parentElement;
+                let dzikirMax = parent.dataset.dzikir;
+                let dzikirCount = parent.querySelector('.card-count');
+                let dzikirCounter = parseInt(dzikirCount.innerHTML);
+    
+                // console.log(dzikirCount);
+    
+                parent.classList.add('counted');
                 
-                setTimeout(function() {
-                    parent.classList.remove('clicked');
-                }, 100)
-            } 
-            
-            if (dzikirCounter == dzikirMax) {
-                parent.classList.add('completed');
-                parent.classList.remove('clickable');
-                dzikirCount.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>'
-            }   
-
+                if (dzikirCounter < dzikirMax) {
+                    dzikirCounter++;
+                    dzikirCount.innerHTML = dzikirCounter;
+                    parent.classList.add('clicked');
+                    
+                    setTimeout(function() {
+                        parent.classList.remove('clicked');
+                    }, 100)
+                } 
+                
+                if (dzikirCounter == dzikirMax) {
+                    parent.classList.add('completed');
+                    parent.classList.remove('clickable');
+                    dzikirCount.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>'
+                }   
+            }
         })
 
 
@@ -249,20 +260,44 @@
         var doa = document.getElementById('body');
 
         function changeFontSize(size) {
+
+            if (doa.classList.contains('translation')) {
+                doa.classList.remove('translation');
+            }
            
-           if (size != '') {
+            if (size != '') {
                doa.className = '';
                doa.classList.add(size);
             } else {
                 doa.className = '';
             }
 
+            localStorage.removeItem('translation');
             localStorage.setItem("fontSize", size);
         }
 
         var fontSize = localStorage.getItem("fontSize");
         if (fontSize != '') {
             doa.classList.add(fontSize);
+        }
+
+        function translasi() {
+            if (doa.classList.contains('translation')) {
+                doa.classList.remove('translation');
+                localStorage.setItem("translation", "off");
+            } else {
+                doa.className = '';
+                doa.classList.add('translation');
+                localStorage.removeItem('fontSize');
+                localStorage.setItem("translation", "on");
+            }
+        }
+
+        var translation= localStorage.getItem("translation");
+        if (translation == 'on') {
+            doa.classList.add("translation");
+        } else {
+            doa.classList.remove("translation");
         }
 
         // back to top

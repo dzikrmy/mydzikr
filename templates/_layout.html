@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, height=device-height, minimum-scale=1.0, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Doa & Dzikir - {{ title }}</title>
+    <title>Dzikir & Doaku - {{ title }}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="style.css?v=23.04.21">
@@ -145,31 +145,34 @@
         let counter = 0;
         
         document.addEventListener('click', function(event){
-            let parent = event.target.parentElement;
-            let dzikirMax = parent.dataset.dzikir;
-            let dzikirCount = parent.querySelector('.card-count');
-            let dzikirCounter = parseInt(dzikirCount.innerHTML);
-
-            console.log(dzikirCount);
-
-            parent.classList.add('counted');
+            let counterArea = event.target.className;
             
-            if (dzikirCounter < dzikirMax) {
-                dzikirCounter++;
-                dzikirCount.innerHTML = dzikirCounter;
-                parent.classList.add('clicked');
+            if (counterArea == "card-click-area") {
+                let parent = event.target.parentElement;
+                let dzikirMax = parent.dataset.dzikir;
+                let dzikirCount = parent.querySelector('.card-count');
+                let dzikirCounter = parseInt(dzikirCount.innerHTML);
+    
+                // console.log(dzikirCount);
+    
+                parent.classList.add('counted');
                 
-                setTimeout(function() {
-                    parent.classList.remove('clicked');
-                }, 100)
-            } 
-            
-            if (dzikirCounter == dzikirMax) {
-                parent.classList.add('completed');
-                parent.classList.remove('clickable');
-                dzikirCount.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>'
-            }   
-
+                if (dzikirCounter < dzikirMax) {
+                    dzikirCounter++;
+                    dzikirCount.innerHTML = dzikirCounter;
+                    parent.classList.add('clicked');
+                    
+                    setTimeout(function() {
+                        parent.classList.remove('clicked');
+                    }, 100)
+                } 
+                
+                if (dzikirCounter == dzikirMax) {
+                    parent.classList.add('completed');
+                    parent.classList.remove('clickable');
+                    dzikirCount.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>'
+                }   
+            }
         })
 
         {% endif %}
@@ -189,20 +192,44 @@
         var doa = document.getElementById('body');
 
         function changeFontSize(size) {
+
+            if (doa.classList.contains('translation')) {
+                doa.classList.remove('translation');
+            }
            
-           if (size != '') {
+            if (size != '') {
                doa.className = '';
                doa.classList.add(size);
             } else {
                 doa.className = '';
             }
 
+            localStorage.removeItem('translation');
             localStorage.setItem("fontSize", size);
         }
 
         var fontSize = localStorage.getItem("fontSize");
         if (fontSize != '') {
             doa.classList.add(fontSize);
+        }
+
+        function translasi() {
+            if (doa.classList.contains('translation')) {
+                doa.classList.remove('translation');
+                localStorage.setItem("translation", "off");
+            } else {
+                doa.className = '';
+                doa.classList.add('translation');
+                localStorage.removeItem('fontSize');
+                localStorage.setItem("translation", "on");
+            }
+        }
+
+        var translation= localStorage.getItem("translation");
+        if (translation == 'on') {
+            doa.classList.add("translation");
+        } else {
+            doa.classList.remove("translation");
         }
 
         // back to top
