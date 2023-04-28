@@ -227,6 +227,8 @@
             doa.classList.add(fontSize);
         }
 
+        {% if translasi %}
+
         function translasi() {
             if (doa.classList.contains('translation')) {
                 doa.classList.remove('translation');
@@ -245,6 +247,8 @@
         } else {
             doa.classList.remove("translation");
         }
+
+        {% endif %}
 
         // back to top
         function backTop() {

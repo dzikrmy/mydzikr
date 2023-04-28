@@ -180,11 +180,6 @@
                         3<small class="ml-0.5">x</small>
                     </span>
                 </button>
-                <button class="p-1 relative z-10 hidden" onclick="translasi()">
-                    <span class="change-size-item">
-                        ع<span class="ml-0">A</span>
-                    </span>
-                </button>
                 <span class="change-size-state"></span>
             </div>
             <button class="w-12 h-12 rounded-full bg-black dark:bg-white bg-opacity-10 dark:bg-opacity-10 backdrop-blur-xl flex items-center justify-center" onclick="backTop()">
@@ -284,24 +279,6 @@
             doa.classList.add(fontSize);
         }
 
-        function translasi() {
-            if (doa.classList.contains('translation')) {
-                doa.classList.remove('translation');
-                localStorage.setItem("translation", "off");
-            } else {
-                doa.className = '';
-                doa.classList.add('translation');
-                localStorage.removeItem('fontSize');
-                localStorage.setItem("translation", "on");
-            }
-        }
-
-        var translation= localStorage.getItem("translation");
-        if (translation == 'on') {
-            doa.classList.add("translation");
-        } else {
-            doa.classList.remove("translation");
-        }
 
         // back to top
         function backTop() {

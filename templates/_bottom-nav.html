@@ -22,11 +22,13 @@
                         3<small class="ml-0.5">x</small>
                     </span>
                 </button>
-                <button class="p-1 relative z-10 hidden" onclick="translasi()">
+                {% if translasi %}
+                <button class="p-1 relative z-10" onclick="translasi()">
                     <span class="change-size-item">
                         ع<span class="ml-0">A</span>
                     </span>
                 </button>
+                {% endif %}
                 <span class="change-size-state"></span>
             </div>
             <button class="w-12 h-12 rounded-full bg-black dark:bg-white bg-opacity-10 dark:bg-opacity-10 backdrop-blur-xl flex items-center justify-center" onclick="backTop()">
