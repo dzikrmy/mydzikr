@@ -142,7 +142,7 @@
    @apply font-kitab text-xl/[2] md:text-3xl/[2] mt-5 text-right;
 }
 .doa-translation {
-    @apply mt-3 text-lg italic text-slate-400 font-serif;
+    @apply mt-3 text-lg md:text-xl italic dark:text-slate-400 text-slate-600 font-serif;
 }
 #body.doa-x2 .doa {
     @apply text-2xl/[2] md:text-4xl/[2];
